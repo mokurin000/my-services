@@ -1,0 +1,13 @@
+[Unit]
+Description=rathole reverse proxy
+After=network.target NetworkManager.service systemd-networkd.service iwd.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/rathole /home/user/server.toml
+Restart=always
+# workaround rathole random hang issue
+RuntimeMaxSec=1800
+
+[Install]
+WantedBy=default.target
