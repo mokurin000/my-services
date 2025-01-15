@@ -47,9 +47,10 @@ type = "tcp"
 nodelay = false
 ' | sudo su moku -c 'dd of=~/server.toml'
 
-# Generate client-side configuration of rathole
 my_ipv4=$(curl -s 'https://api.ipify.org')
 clear && cat <<< '
+client.toml of rathole
+-----------------
 [client]
 remote_addr = "'$my_ipv4':2333"
 default_token = "'$rathole_password'"
@@ -80,4 +81,6 @@ sudo curl -1sLf -o /etc/systemd/system/rustdesk-hbbr.service https://raw.githubu
 sudo curl -1sLf -o /etc/systemd/system/rustdesk-hbbs.service https://raw.githubusercontent.com/mokurin000/my-services/refs/heads/main/rustdesk-hbbs.service
 sudo systemctl enable --now rustdesk-hbb{r,s}
 
+echo Rustdesk server key:
+echo --------------------
 sudo cat /home/moku/rustdesk-server/amd64/id_ed25519.pub; echo
