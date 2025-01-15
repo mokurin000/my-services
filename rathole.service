@@ -4,10 +4,14 @@ After=network.target NetworkManager.service systemd-networkd.service iwd.service
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/rathole /home/user/server.toml
+ExecStart=/home/moku/.local/bin/rathole /home/moku/server.toml
 Restart=always
 # workaround rathole random hang issue
 RuntimeMaxSec=1800
+
+# run as my normal user
+User=moku
+Group=moku
 
 [Install]
 WantedBy=default.target
