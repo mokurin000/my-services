@@ -1,0 +1,16 @@
+[Unit]
+Description=rustdesk relay server
+After=network.target NetworkManager.service systemd-networkd.service iwd.service
+
+[Service]
+Type=simple
+ExecStart=/home/moku/rustdesk-server/amd64/hbbr
+WorkingDirectory=/home/moku/rustdesk-server/amd64
+Restart=always
+
+# run as my normal user
+User=moku
+Group=moku
+
+[Install]
+WantedBy=default.target
